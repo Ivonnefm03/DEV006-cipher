@@ -15,16 +15,7 @@ function onSubmit(e){
         alert(" Usuario y/o contraseña incorrecta. Intenta de nuevo")
     }
 }
-/*
-function cifrar2(text, displacements){
-    if(!text){
-        return "";
-        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        displacements = (displacements % 26 + 26) %26;
-        return text.replace(/[A-Z]/ig, c=> letters[(letters.indexOf(c)+displacements)%26]);
-    }
-}
-*/
+
 
 function cifrar(text, displacements){
     let result = "";
@@ -43,6 +34,15 @@ function cifrar(text, displacements){
         }
         return result;
     }
+}
+
+function descifrar(text, displacements){
+    if(!text){
+        return "";
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        displacements = (displacements % 26 - 26) %26;
+        return text.replace(/[A-Z]/ig, c=> letters[(letters.indexOf(c)-displacements)%26]);
+    } 
 }
 
 
@@ -86,3 +86,4 @@ startEncryptionEvents();
 
 
 
+  
