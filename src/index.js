@@ -16,35 +16,41 @@ function onSubmit(e){
     }
 }
 
-
-function cifrar(text, displacements){
-    let result = "";
-    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-    displacements = (displacements % 26 + 26) %26 ;
-    if(text){
-        for( let i = 0; i<text.length; i++){
-            if(letters.indexOf(text[i])!= -1){
-                let position = ((letters.indexOf(text[i])+displacements)%26);
-                result += letters[position];
-            }
-            else {
-                result += text[i];
-            }
+function cifrar(mensaje, desplazamiento){
+    const abecedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  
+    let cadenaCifrada = "";
+    desplazamiento = parseInt(desplazamiento);
+    
+    let t = 0;
+    while (t< mensaje.length) {
+        const letraInicial = mensaje[t];
+        const posicionLetraInicial = abecedario.indexOf(letraInicial);
+        
+        if(posicionLetraInicial == -1){
+            cadenaCifrada = cadenaCifrada + letraInicial 
+        } else{
+            const posicionLetraFinal = posicionLetraInicial + desplazamiento;
+            const nuevaLetra = abecedario[posicionLetraFinal];
+            cadenaCifrada = cadenaCifrada + nuevaLetra
         }
-        return result;
+        t++;
     }
-}
-
-function descifrar(text, displacements){
-    if(!text){
+    
+    return cadenaCifrada;
+  }
+  
+  
+  function descifrar(text, displacements){
+    if(!text) {
         return "";
-        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        displacements = (displacements % 26 - 26) %26;
-        return text.replace(/[A-Z]/ig, c=> letters[(letters.indexOf(c)-displacements)%26]);
-    } 
-}
-
+    }
+  
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    displacements = (displacements % 26 - 26) %26;
+    return text.replace(/[A-Z]/ig, c=> letters[(letters.indexOf(c)-displacements)%26]);
+    
+  }
 
 function startEncryptionEvents(){    
     document.getElementById("mensajeaCifrar").addEventListener("keyup", function(){
@@ -53,17 +59,19 @@ function startEncryptionEvents(){
     document.getElementById("cifrar").addEventListener("click", function(){
         let text = document.getElementById("mensajeaCifrar").value;
         let displacements = document.getElementById("displacements").value;
-        document.getElementById("mensajeCifrado").value = cifrar(text, displacements )
+        document.getElementById("mensajeCifrado").value = cifrar(text, displacements)
+        document.getElementById('descifrar').disabled = false;
     });
     document.getElementById("descifrar").addEventListener("click", function(){
         let text = document.getElementById("mensajeCifrado").value;
         let displacements = document.getElementById("displacements").value;
         document.getElementById("mensajeCifrado").value = descifrar(text, displacements )
+        document.getElementById('descifrar').disabled = true;
     });
 }
 
 
-// empeza el programa cuando carga el javascript
+// empieza el programa cuando carga el javascript
 
 //LOGIN DE INGRESO
 
@@ -77,10 +85,8 @@ let USERS = {
 let form = document.getElementById('login');
 form.addEventListener("submit", onSubmit);
 
-// MENSAJE CIFRADO
 
 // Dar inicio a los eventos del cifrado
-
 startEncryptionEvents();
 
 
