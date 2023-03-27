@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Cesar Cipher</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pangolin&family=Raleway&display=swap" rel="stylesheet">
+  </head>
+
+
+  <body>
+    
+    <section id="welcome" style="display: block;">
+      <h1>MY PERSONAL VAULT</h1>
+      <h3>Bienvenid@ aquí tendrás tus pensamientos más valiosos a salvo</h3>
+      <img src="https://media-public.canva.com/wCQtM/MAEEdqwCQtM/1/tl.png" alt="vault">
+    </section>
+
+    <section id="data" style="display:block">
+      <img src="https://media-public.canva.com/UDMD8/MADwfBUDMD8/3/tl.png" alt="">
+      <form id="login">
+        <label for="user">Nombre de usuario</label>
+        <input type="text" id="user" required>
+
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" required>
+
+        <button type="submit">Iniciar</button>
+      </form>
+    </section>
+
+    <main id="messaje" style="display: block;">
+      <div>
+        <h1>Tus archivos</h1>
+      </div>
+
+      <div>
+        <h2>Nombre</h2>
+        <input type="text" placeholder="Nombre de archivo "> 
+        <h2>Mensaje a Cifrar</h2>
+        <textarea id="mensajeaCifrar" type="text" placeholder ="Escribe el mensaje a encriptar "> </textarea>
+        <div class="displacements">
+          <input  id= "displacements" class= "range" type="range" value="5" min="1" max="20" oninput="this.nextElementSibling.value = this.value" >
+          <output>5</output> 
+        </div>
+      </div>
+
+      <div>
+        <button id="cifrar" >CIFRAR</button>
+        <h2>MEnsaje Cifrado</h2>  
+        <textarea id="mensajeCifrado" type="text" placeholder="Aquí veras tu mensaje cifrado"></textarea>
+        <button id="descifrar" disabled>DESCIFRAR</button>
+      </div>  
+
+    </main>
+    <script src="index.js" type="module"></script>
+  </body>
+</html>
