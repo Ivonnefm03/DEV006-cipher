@@ -1,4 +1,4 @@
-import {decode, encode} from "./cipher"
+import cipher from "./cipher.js"
 
 // declaracion de funciones
 function onSubmit(e){        
@@ -24,13 +24,13 @@ function startEncryptionEvents(){
   document.getElementById("cifrar").addEventListener("click", function(){
     const text = document.getElementById("mensajeaCifrar").value;
     const displacements = document.getElementById("displacements").value;
-    document.getElementById("mensajeCifrado").value = decode(text, displacements)
+    document.getElementById("mensajeCifrado").value = cipher.decode(text, displacements)
     document.getElementById('descifrar').disabled = false;
   });
   document.getElementById("descifrar").addEventListener("click", function(){
     const text = document.getElementById("mensajeCifrado").value;
     const displacements = document.getElementById("displacements").value;
-    document.getElementById("mensajeCifrado").value = encode(text, displacements )
+    document.getElementById("mensajeCifrado").value = cipher.encode(text, displacements )
     document.getElementById('descifrar').disabled = true;
   });
 }
